@@ -1,0 +1,32 @@
+{% load static %}
+<html>
+  <head>
+    <title>Edit Profile</title>
+    <link href="static/css/editprofile.css" rel="stylesheet" type="text/css" />
+  </head>
+  <body>
+    <div class="details">
+      <form method="post">
+        {% csrf_token %}
+        <h1 style="text-align:center">Enter the details</h1>
+        <hr>
+        <label><b>Phone Number</b></label>
+        <input type="text" placeholder="eg: 9999999999" name="ph_num">
+
+        <label><b>College Name</b></label>
+        <input type="text" placeholder="eg: Adi Shankara Institute of Engineering and Technology" name="clg_name">
+
+        <label><b>Current Semester</b></label>
+        <input type="text" placeholder="eg: Semester 1" name="sem">
+
+        <label><b>Branch</b></label>
+        <input type="text" placeholder="eg: Computer Science" name="brch">
+
+        <label><b>Upload Display Picture </b></label>&nbsp;
+        <input type="file" id="myFile" name="filename" name="dp_img">
+        <hr>
+        <a href="/editprofile"><button class="registerbtn">Update</button></a>
+      </form>
+    </div>
+  </body>
+</html>

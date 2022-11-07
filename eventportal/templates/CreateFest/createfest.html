@@ -1,0 +1,24 @@
+{% extends "../BaseHtml/base.html" %}
+{% load static %}
+{% block title %}
+IEvent|add fest
+{% endblock title %}
+{% block head %}
+<link rel="stylesheet" href="/static/css/createfest.css">
+{% endblock head %}
+{% block body %}
+<div class="contents">
+    <p>
+        <form method="POST" enctype="multipart/form-data">
+            {% csrf_token %}
+            <img src="/static/images/createfest/event-icon.png"><br>
+            <input id="fname" class="txt" type="text" placeholder="Fest Name" name="festname" required=true><br>
+            <textarea id="fdesc" rows="5" cols="50" name="festdesc" placeholder="Fest description" required=true></textarea>
+            <input id="fvenue" class="txt" type="text" placeholder="Fest Venue" name="festvenue" required=true><br>
+            <input id="fdate" class="txt" type="date" placeholder="Fest date" name="festdate" required=true><br>
+            <h3>Upload Fest Image</h3><input type="file" accept="image/*" name="festimg" required=true><br>
+            <a href="/addfest"><button>Create Fest</button></a><br>
+        </form>
+    </p>
+</div>
+{% endblock body %}

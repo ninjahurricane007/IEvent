@@ -1,0 +1,78 @@
+{% extends "../BaseHtml/base.html" %}
+{% load static %}
+{% block title %}
+IEvent|Registered Events
+{% endblock title %}
+{% block head %}
+<link rel="stylesheet" href="/static/css/checkout.css">
+{% endblock head %}
+{% block body %}
+<div class="order_main_container">
+    <h1>Your Order</h1>
+    <div class="order_item">
+        <div class="box1">
+            <img src="/media/{{event.event_img}}">
+            <div class="details">
+                <h3>{{event.event_name}}</h3>
+                <span>Brahma event conducted in ASIET</span>
+                <span></span>
+            </div>
+        </div>
+        <div class="box2">
+            Total
+            <h2 class="price">₹ {{event.event_price}}</h2>
+            Quantity 1<br><br>
+            <form action="?action=create_payment" method="POST">
+                {% csrf_token %}
+                <button type="submit" id="rzp-button1">Checkout</button>
+            </form>
+        </div>
+    </div>
+</div>
+{% if payment is not None %}
+<script src="https://checkout.razorpay.com/v1/checkout.js"></script>
+<script>
+    var options = {
+        "key": "rzp_test_Eb2FJaO7glZisz", // Enter the Key ID generated from the Dashboard
+        "amount":"{{payment.amount}}", // Amount is in currency subunits. Default currency is INR. Hence, 50000 refers to 50000 paise
+        "currency": "INR",
+        "name": "College Event Portal",
+        "description": "Register event",
+        "image": "",
+        "order_id": "{{orderid}}",
+        "callback_url":"http://127.0.0.1:8000/verify_payment",
+        "redirect":true,
+        "handler": function (response){
+            alert(response.razorpay_payment_id);
+            {% comment %} alert(response.razorpay_order_id); {% endcomment %}
+            alert(response.razorpay_signature)
+        },
+        "prefill": {
+            "name": "Tester",
+            "email": "test@example.com",
+            "contact": "9999999999"
+        },
+        "notes": {
+            "address": "Razorpay Corporate Office"
+        },
+        "theme": {
+            "color": "#3399cc"
+        }
+    };
+    var rzp1 = new Razorpay(options);
+    rzp1.on('payment.failed', function (response){
+            alert(response.error.code);
+            alert(response.error.description);
+            alert(response.error.source);
+            alert(response.error.step);
+            alert(response.error.reason);
+            alert(response.error.metadata.order_id);
+            alert(response.error.metadata.payment_id);
+    });
+    document.getElementById('rzp-button1').onclick = function(e){
+        rzp1.open();
+        e.preventDefault();
+    }
+</script>
+{% endif %}
+{% endblock body %}

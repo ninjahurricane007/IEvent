@@ -1,0 +1,104 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="stylesheet" href="/static/css/index.css">
+</head>
+<body>
+    <nav style="background-color:#fff">
+        <div class="left_content">
+            <i class="fas fa-bars menu-bar" data-visible="true" onclick="handleSidebar()" style="margin-right:10px"></i>
+            <img src="/static/images/logo1.png" alt="">
+            <h1 class="navbar-logo"><a href="/fests">iEvent</a></h1>
+        </div>
+        <ul class="nav_links">
+            {% if user.is_authenticated %}
+            <li class="nav-item">
+                <i class="fas fa-sign-out-alt"></i>
+                <a class="nav-link active" aria-current="page" href="auth/logout">Logout</a>
+            </li>
+            {% else %}
+                <li class="nav-item">
+                    <a class="nav-link active" aria-current="page" href="/auth/login">Login</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link active" aria-current="page" href="/auth/signup">Signup</a>
+                </li>
+            {% endif %}
+        </ul>
+        </div>
+      </nav>
+    <div class="welcome_page_container">
+        <div class="welcome_hero_container">
+            
+            <div class="welcome_desc">
+                <div class="platform_details">
+                    <div class="title">
+                        <span>College <br> Event Portal</span>
+                    </div>
+                    <div class="platform_description">
+                        <span>Welcome to EventHuB, your number one portal for creating and registering for an event.
+                            We're dedicated to providing you the best of this product, with a focus on dependability and customer service.
+                            We hope you enjoy our event portal as much as we enjoy offering them to you.
+                        </span>
+                    </div>
+                    <div class="get_started_btn">
+                        <a href="/fests"><button>Get Started</button></a>
+                    </div>
+                </div>
+                <div class="welcome_img">
+                    <img src="/static/images/home_img2.png" alt="">
+                </div>
+            </div>
+        </div>
+        <div class="features_container">
+            <h1 className="feature_title">Features</h1>
+            <div class="feature_cards">
+                <div class="feature_card_item">
+                    <h3>Event Registration</h3>
+                    <p>Lorem ipsum dolor sit amet consectetur, adipisicing elit. Optio quam reprehenderit aliquid nobis magni saepe aperiam, distinctio quas excepturi iure.</p>
+                </div>
+                <div class="feature_card_item">
+                    <h3>Payment Integration</h3>
+                    <p>Lorem ipsum dolor sit amet consectetur, adipisicing elit. Optio quam reprehenderit aliquid nobis magni saepe aperiam, distinctio quas excepturi iure.</p>
+                </div>
+                <div class="feature_card_item">
+                    <h3>Event Tracking</h3>
+                    <p>Lorem ipsum dolor sit amet consectetur, adipisicing elit. Optio quam reprehenderit aliquid nobis magni saepe aperiam, distinctio quas excepturi iure.</p>
+                </div>
+                <div class="feature_card_item">
+                    <h3>Hosting Fests & Events</h3>
+                    <p>Lorem ipsum dolor sit amet consectetur, adipisicing elit. Optio quam reprehenderit aliquid nobis magni saepe aperiam, distinctio quas excepturi iure.</p>
+                </div>
+                <div class="feature_card_item">
+                    <h3>Track Event Participation</h3>
+                    <p>Lorem ipsum dolor sit amet consectetur, adipisicing elit. Optio quam reprehenderit aliquid nobis magni saepe aperiam, distinctio quas excepturi iure.</p>
+                </div>
+                <div class="feature_card_item">
+                    <h3>Get Email Schedules</h3>
+                    <p>Lorem ipsum dolor sit amet consectetur, adipisicing elit. Optio quam reprehenderit aliquid nobis magni saepe aperiam, distinctio quas excepturi iure.</p>
+                </div>
+            </div>
+        </div>
+        <div class="about_container">
+            <div class="about_contents">
+                <img src="/static/images/aboutimg.png" alt="">
+                <div class="about_details">
+                    <h2>About our Platform</h2>
+                    <p>We're dedicated to providing you the best of this product, with a focus on dependability and customer service.We hope you enjoy our event portal as much as we enjoy offering them to you.EventHuB helps you organize and manage your events and fest. Let us help you create.</p>
+                </div>
+            </div>
+        </div>
+        <div class="footer">
+            <div class="footer_contents">
+                <p>© 2022 IEvent. All rights reserved</p>
+            </div>
+        </div>
+    </div>
+    <script src="https://kit.fontawesome.com/bfc635748c.js" crossorigin="anonymous"></script>
+</body>
+</html>

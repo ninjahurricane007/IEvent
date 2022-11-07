@@ -1,0 +1,154 @@
+{% extends "../BaseHtml/base.html" %}
+{% load static %}
+{% block title %}
+IEvent|Fests
+{% endblock title %}
+{% block head %}
+<link rel="stylesheet" href="/static/css/coordinator.css">
+<link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
+{% endblock head %}
+{% block body %}
+
+<div class="cordinator_container">
+  <div class="row" align="center" style="overflow-x:auto;padding:0 8px">
+    <div class="column r">
+      <div class="card">
+        <p style="font-size: 20px;"><b>Events<br><h2 style="font-size:30px ;">{{count_event}}</h2></b></p>
+      </div>
+    </div>
+    <div class="column g">
+      <div class="card">
+        <p style="font-size: 20px;"><b>Fests<br> <h2 style="font-size:30px ;">{{count_fest}}</h2></b></p>
+      </div>
+    </div>
+    <div class="column b">
+      <div class="card">
+        <p style="font-size: 20px;"><b>Participants<br> <h2 style="font-size:30px ;">{{count_reg}}</h2></b></p>
+      </div>
+    </div>
+</div>
+
+  <br><br><br>
+
+  <div class="w3-container" align="center">
+    <div class="w3-row" align="center">
+      <a href="javascript:void(0)" onclick="openCity(event, 'events');">
+        <div class="w3-third tablink w3-bottombar w3-hover-light-grey w3-padding">Events</div>
+      </a>
+      <a href="javascript:void(0)" onclick="openCity(event, 'fests');">
+        <div class="w3-third tablink w3-bottombar w3-hover-light-grey w3-padding">Fests</div>
+      </a>
+      <a href="javascript:void(0)" onclick="openCity(event, 'participants');">
+        <div class="w3-third tablink w3-bottombar w3-hover-light-grey w3-padding">Participants</div>
+      </a>
+    </div>
+  
+    <div id="events" class="w3-container city" >
+      <br><br>
+  <div <div style="overflow-x:auto;">
+
+  <table class="tbl" align="center">
+    <tr>
+      <th>Event Name</th>
+      <th>Price</th>
+      <th>Participation</th>
+      <th>Delete</th>
+    </tr>
+    {% for event in events %}
+    <tr>
+      <td>{{event.event_name}}</td>
+      <td>{{event.event_price}}</td>
+      <td>{{event.num_participants}}</td>
+      <td><a href="/eventdelete/{{event.id}}"><img src="/static/images/delete 1.png" height="20px"></a></td>
+    </tr>
+    {% endfor %}
+  </table>
+  </div>
+    </div>
+  
+    <div id="fests" class="w3-container city" style="display:none">
+      <br><br>
+  <div <div style="overflow-x:auto;">
+  <table class="tbl" align="center">
+    <a href="/addfest"><button class="add_fest_btn">Add fests</button></a>
+    <tr>
+      <th>Fest Name</th>
+      <th>Date</th>
+      <th>Venue</th>
+      <th>Delete</th>
+    </tr>
+    {% for fest in fests %}
+    <tr>
+      <td>{{fest.fest_name}}</td>
+      <td>{{fest.fest_date}}</td>
+      <td>{{fest.fest_venue}}</td>
+      <td><a href="/festdelete/{{fest.id}}"><img src="/static/images/delete 1.png" height="20px"></a></td>
+      <td><a href="/eventcreate/{{fest.id}}"><button class="add_fest_btn">Create Event</button></a></td>
+    </tr>
+    {% endfor %}
+  </table>
+  </div>
+    </div>
+    </div>
+  
+    <div id="participants" class="w3-container city" style="display:none">
+      <br><br>
+  <div class="sorting_participant">
+    <form action="?action=filter_events" method="POST">
+      {% csrf_token %}
+      <select id="events" name="event">
+        {% for event in events %}
+          <option value={{event.id}} {% if reg1.event.id == event.id %} selected {% else %} "" {% endif %}>{{event.event_name}}</option>
+        {% endfor %}
+      </select>
+      <button type="submit">Submit</button>
+    </form>
+  </div>
+  <div <div style="overflow-x:auto;">
+  <table class="tbl" align="center">
+    <tr>
+      <th>Participant Name</th>
+      <th>Email Id</th>
+      <th>Phone</th>
+      <th>Class</th>
+      <th>Event Name</th>
+      <th>Delete</th>
+    </tr>
+    {% for reg in regis %}
+    <tr>
+      <td>{{reg.user.username}}</td>
+      <td>{{reg.user.email}}</td>
+      <td>9734285623</td>
+      <td>S6 CSA</td>
+      <td>{{reg.event.event_name}}</td>
+      <td><a href="#"><img src="/static/images/delete 1.png" height="20px"></a></td>
+    </tr>
+    {% endfor %}
+  </table>
+  </div>
+    </div>
+    </div>
+  </div>
+</div>
+{% endblock body %}
+{% block js %}
+
+<script>
+  function openCity(evt, cityName) {
+    var i, x, tablinks;
+    x = document.getElementsByClassName("city");
+    for (i = 0; i < x.length; i++) {
+      x[i].style.display = "none";
+    }
+    tablinks = document.getElementsByClassName("tablink");
+    for (i = 0; i < x.length; i++) {
+      tablinks[i].className = tablinks[i].className.replace(" w3-border-black", "");
+    }
+    document.getElementById(cityName).style.display = "block";
+    evt.currentTarget.firstElementChild.className += " w3-border-black";
+  }
+  </script>
+  {% endblock js %}
+
+
+{% load static %}

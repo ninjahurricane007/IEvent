@@ -1,0 +1,36 @@
+{% extends "../BaseHtml/base.html" %}
+{% load static %}
+{% block title %}
+IEvent|add fest
+{% endblock title %}
+{% block head %}
+<link rel="stylesheet" href="static/css/profile.css">
+{% endblock head %}
+{% block body %}
+
+    <div class="profile_container">
+        <div class="grid element-animation">
+          <div class="card color-card">
+            {% if key %}
+            <img src="static/images/avatar.png">
+            <h2>Username</h2>
+            <h3>{{user.username}}</h3>
+            <h2>Email</h2>
+            <h3>{{user.email}}</h3>
+            <h2>Phone</h2>
+            <h3>{{user.profile.ph_num}}</h3>
+            <h2>College</h2>
+            <h3>{{user.profile.clg_name}}</h3>
+            <h2>Semester</h2>
+            <h3>{{user.profile.sem}}</h3>
+            <h2>Branch</h2>
+            <h3>{{user.profile.brch}}</h3>
+            {% endif %}
+            <a href="/editprofile"><button class="btn color-a top" >Edit Profile</button></a>
+          </div>
+        </div>
+      </div>
+{% endblock body %}
+
+
+  

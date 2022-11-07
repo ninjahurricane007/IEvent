@@ -1,0 +1,36 @@
+{% extends "../BaseHtml/base.html" %}
+{% load static %}
+{% block title %}
+IEvent|Registered Events
+{% endblock title %}
+{% block head %}
+<link rel="stylesheet" href="/static/css/registerpage.css">
+{% endblock head %}
+{% block body %}
+<div class="regpage_main_container">
+   {% comment %} <p>{{event.event_name}}</p>
+   <p>{{event.event_desc}}</p>
+   <p>{{event.event_tags}}</p>
+   <img src="/media/{{event.event_img}}" alt="ss"> {% endcomment %}
+   <h1>{{event.event_name}}</h1>
+   <div class="event_desc">
+        <div class="event_img">
+            <img src="/media/{{event.event_img}}" alt="">
+        </div>
+        <div class="event_rhs">
+            <div class="event_details">
+                <span class="teamsize">Team size {{event.event_team_size}}</span>
+                <span class="prizepool">Prize pool ${{event.event_prizepool}}</span>
+                <span>Lorem, ipsum dolor sit amet consectetur adipisicing elit. Autem voluptates ipsa recusandae magnam id iste vel eligendi reiciendis officia facilis iusto cum, nesciunt accusamus repellat praesentium, iure culpa dicta, voluptatum vero reprehenderit adipisci omnis fugiat laborum aspernatur! Hic facilis eum quidem voluptates suscipit veniam delectus iure libero doloribus soluta natus repellendus obcaecati, ipsa et pariatur</span>
+                <div class="tags">
+                    {% for tag in tags %}
+                        <span class="tag">{{tag}}</span>
+                    {% endfor %}
+                </div>
+                <span class="price">₹ {{event.event_price}}</span>
+            </div>
+            <a href="/checkout/{{event.id}}" style="text-decoration:none" class="register_btn"><button>Register</button></a>
+        </div>
+   </div>
+</div>
+{% endblock body %}

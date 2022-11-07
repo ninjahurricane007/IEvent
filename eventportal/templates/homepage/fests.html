@@ -1,0 +1,31 @@
+{% extends "../BaseHtml/base.html" %}
+{% load static %}
+{% block title %}
+IEvent|Fests
+{% endblock title %}
+{% block head %}
+<link rel="stylesheet" href="/static/css/fests.css">
+{% endblock head %}
+{% block body %}
+<div class="fests_container">
+    <h1 class="card__header fest__header">UPCOMING FESTS</h1>
+    <br><hr><br><br><br><br>
+    <div class="grid">
+        {% for fest in fests %}
+        <div class="grid__item">
+            <div class="card">
+                <img class="card__img" src="/media/{{fest.fest_img}}" alt={{ fest.fest_name }}>
+                <div class="card__content">
+                    <h3>&nbsp;{{fest.fest_date}}</h3><br>
+                    <h1 class="card__header">{{ fest.fest_name }}</h1>
+                    <h3>&nbsp;{{ fest.fest_venue }}</h3><br>
+                    <p class="card__text">{{fest.fest_desc}}</p>
+                    <a href="events/{{fest.id}}" style="text-decoration:none"><button class="card__btn">View Events</button></a>
+                </div>
+            </div>
+        </div>
+        {% endfor %}
+    </div>
+    <p class="footer-text">© 2022 IEvent. All rights reserved</p>
+</div>
+{% endblock body %}

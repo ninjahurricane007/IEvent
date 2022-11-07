@@ -1,0 +1,27 @@
+{% extends "../BaseHtml/base.html" %}
+{% load static %}
+{% block title %}
+IEvent|Registered Events
+{% endblock title %}
+{% block head %}
+<link rel="stylesheet" href="/static/css/yourevents.css">
+{% endblock head %}
+{% block body %}
+<div class="regevents_main_container">
+    <div class="regevents_container">
+        
+        {% for eve in reg %}
+        <div class="card">
+            <div class="container">
+                <div class="detail">
+                    <h4><b>{{eve.event.event_name}}</b></h4>
+                    <p>{{eve.event.event_desc}}</p>
+                </div>
+                
+                <a href="unregister/{{eve.id}}"><button class="btn">Unregister</button></a>
+            </div>
+        </div>
+        {% endfor %}
+    </div>
+</div>
+{% endblock body %}

@@ -1,0 +1,41 @@
+{% extends "../BaseHtml/base.html" %}
+{% load static %}
+{% block title %}
+IEvent|Fests
+{% endblock title %}
+{% block head %}
+<link rel="stylesheet" href="/static/css/events.css">
+{% endblock head %}
+{% block body %}
+<div class="events_main_container">
+    <img src="/media/{{fest_poster}}" alt="">
+    <span>Events</span>
+    <div class="event_flex_wrapper">
+      <div class="events_container">
+        {% for event in events %}
+        <div class="event_item">
+          <div class="event_img"><img src="/media/{{event.event_img}}" alt=""></div>
+          <div class="event_contents">
+            <div class="event_name">{{event.event_name}}</div>
+            <div class="event_desc">Lorem ipsum dolor sit amet consectetur adipisicing elit. Magni, culpa.</div>
+            <div class="event_price">
+              {% if event.event_price == 0 %}
+              Free
+              {% else %}
+              ₹ {{event.event_price}}</div>
+              {% endif %}
+            <div class="reg_button">
+              <a href="/regevent/{{event.id}}" style="text-decoration:none"><button>Details &nbsp; <i class="fas fa-arrow-right"></i></button></a>
+            </div>
+            </div>
+        </div>
+        {% endfor %}
+      </div>
+    </div>
+    <br>
+    <br>
+    <br>
+    <br>
+</div>
+{% endblock body %}
+

@@ -1,0 +1,54 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="stylesheet" href="/static/login.css">
+</head>
+<body>
+    <nav style="background-color:#fff">
+        <div class="left_content">
+            <i class="fas fa-bars menu-bar" data-visible="true" onclick="handleSidebar()" style="margin-right:10px"></i>
+            <img src="/static/images/logo1.png" alt="">
+            <h1 class="navbar-logo"><a href="/fests">iEvent</a></h1>
+        </div>
+        <ul class="nav_links">
+            {% if user.is_authenticated %}
+            <li class="nav-item">
+                <i class="fas fa-sign-out-alt"></i>
+                <a class="nav-link active" aria-current="page" href="auth/logout">Logout</a>
+            </li>
+            {% else %}
+                <li class="nav-item">
+                    <a class="nav-link active" aria-current="page" href="/auth/login">Login</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link active" aria-current="page" href="/auth/signup">Signup</a>
+                </li>
+            {% endif %}
+        </ul>
+        </div>
+      </nav>
+    <div class="contents">
+        <form class="login" method='POST'>
+            {% csrf_token %}
+            <img src="/static/images/userreg/face.png">
+            <input class="txt" type="text" placeholder="Username/Email" name="username" required=true>
+            <input class="txt" type="password" placeholder="Password" name="password" required=true>
+            <button>Login</button>
+            <h3 style="margin-top:10px">Don't have an account?&nbsp<a href="/auth/signup"><u>Sign Up</u></a></h3><br>
+            <div class="form-group">
+                {% for message in messages %}
+                <div class="alert alert-danger" role="alert" style="margin-bottom: 0px;">
+                    {{message}}
+                </div>
+                {% endfor %}
+            </div>
+        </form>
+    </div>
+</body>
+</html>
+
